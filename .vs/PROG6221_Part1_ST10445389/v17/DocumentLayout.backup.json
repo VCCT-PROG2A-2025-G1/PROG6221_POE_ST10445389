@@ -1,0 +1,159 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_part2_st10445389\\prog6221_part1_st10445389\\prog6221_part1_st10445389.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\prog6221_part1_st10445389.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fl120189\\Documents\\GitHub\\CLVD6211_POE_ST10445389\\CLVD6211_A1_ST10445389\\Services\\BookingValidationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_part2_st10445389\\prog6221_part1_st10445389\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_part2_st10445389\\prog6221_part1_st10445389\\models\\chatresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\models\\chatresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_part2_st10445389\\prog6221_part1_st10445389\\models\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\models\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_part2_st10445389\\prog6221_part1_st10445389\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_part2_st10445389\\prog6221_part1_st10445389\\cybersecurityawarenessbot.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\cybersecurityawarenessbot.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_part2_st10445389\\prog6221_part1_st10445389\\cybersecurityawarenessbot.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\cybersecurityawarenessbot.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookingValidationService.cs",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\CLVD6211_POE_ST10445389\\CLVD6211_A1_ST10445389\\Services\\BookingValidationService.cs",
+              "RelativeDocumentMoniker": "..\\CLVD6211_POE_ST10445389\\CLVD6211_A1_ST10445389\\Services\\BookingValidationService.cs",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\CLVD6211_POE_ST10445389\\CLVD6211_A1_ST10445389\\Services\\BookingValidationService.cs",
+              "RelativeToolTip": "..\\CLVD6211_POE_ST10445389\\CLVD6211_A1_ST10445389\\Services\\BookingValidationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T15:38:39.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CybersecurityAwarenessBot.csproj",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-27T15:33:26.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CybersecurityAwarenessBot.csproj",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\CybersecurityAwarenessBot.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-27T15:31:12.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChatService.cs",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
+              "ViewState": "AgIAACADAAAAAAAAAAAmwEQDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T15:30:42.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChatResponse.cs",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T15:30:32.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserContext.cs",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T15:30:18.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PROG6221_Part1_ST10445389",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-27T15:20:51.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Program.cs",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Program.cs",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_Part2_ST10445389\\PROG6221_Part1_ST10445389\\Program.cs",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T20:36:06.152Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
