@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\services\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\services\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\models\\cybertask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\models\\cybertask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\models\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\models\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -37,7 +45,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,20 +53,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaskManager.cs",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T16:31:53.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CyberTask.cs",
+              "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\CyberTask.cs",
+              "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\CyberTask.cs",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\CyberTask.cs",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Models\\CyberTask.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T16:31:30.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ChatForm.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\ChatForm.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\ChatForm.cs",
-              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\ChatForm.cs*",
-              "RelativeToolTip": "PROG6221_Part1_ST10445389\\ChatForm.cs*",
-              "ViewState": "AgIAACEBAAAAAAAAAAAwwD8BAAA1AAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\ChatForm.cs",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\ChatForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-27T16:16:20.232Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "BookingValidationService.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\CLVD6211_POE_ST10445389\\CLVD6211_A1_ST10445389\\Services\\BookingValidationService.cs",
               "RelativeDocumentMoniker": "..\\CLVD6211_POE_ST10445389\\CLVD6211_A1_ST10445389\\Services\\BookingValidationService.cs",
@@ -70,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ChatService.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
@@ -82,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ChatResponse.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
@@ -94,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "UserContext.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
@@ -107,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "PROG6221_Part1_ST10445389.csproj",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
@@ -120,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Program.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Program.cs",

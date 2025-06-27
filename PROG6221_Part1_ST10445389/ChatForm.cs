@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Media;
 using CybersecurityAwarenessBot.Models;
+using CybersecurityAwarenessBot.Services;
 
 namespace CybersecurityAwarenessBot
 {
@@ -21,6 +22,12 @@ namespace CybersecurityAwarenessBot
         private Dictionary<string, List<string>> sentimentKeywords;
         private bool waitingForYesNo = false;
         private string pendingTopic = "";
+
+        // Task Management
+        private TaskManager taskManager;
+        private bool inTaskMode = false;
+        private string taskTitle = "";
+        private string taskDescription = "";
 
         private RichTextBox chatDisplay;
         private TextBox userInput;
@@ -34,6 +41,8 @@ namespace CybersecurityAwarenessBot
         private string currentTypingText = "";
         private int typingIndex = 0;
         private bool isTyping = false;
+        private Button taskButton;
+        private Button viewTasksButton;
 
         public ChatForm()
         {
@@ -45,7 +54,7 @@ namespace CybersecurityAwarenessBot
         private void InitializeComponent()
         {
             this.Text = "Enhanced Cybersecurity Awareness Bot for South African Citizens";
-            this.Size = new Size(1000, 750);
+            this.Size = new Size(1000, 800);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.BackColor = Color.FromArgb(20, 20, 30);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -158,6 +167,33 @@ namespace CybersecurityAwarenessBot
             };
             sendButton.Click += SendButton_Click;
 
+            // Task Management Buttons
+            taskButton = new Button
+            {
+                Text = "Add Task 📝",
+                Location = new Point(20, 660),
+                Size = new Size(120, 35),
+                BackColor = Color.FromArgb(128, 0, 128), // Purple
+                ForeColor = Color.White,
+                Font = new Font("Arial", 10, FontStyle.Bold),
+                FlatStyle = FlatStyle.Flat,
+                Visible = false
+            };
+            taskButton.Click += TaskButton_Click;
+
+            viewTasksButton = new Button
+            {
+                Text = "View Tasks 📋",
+                Location = new Point(150, 660),
+                Size = new Size(120, 35),
+                BackColor = Color.FromArgb(255, 140, 0), // Orange
+                ForeColor = Color.White,
+                Font = new Font("Arial", 10, FontStyle.Bold),
+                FlatStyle = FlatStyle.Flat,
+                Visible = false
+            };
+            viewTasksButton.Click += ViewTasksButton_Click;
+
             // Typing timer for typewriter effect
             typingTimer = new Timer();
             typingTimer.Interval = 30; // Speed of typing effect
@@ -168,6 +204,8 @@ namespace CybersecurityAwarenessBot
             this.Controls.Add(chatDisplay);
             this.Controls.Add(userInput);
             this.Controls.Add(sendButton);
+            this.Controls.Add(taskButton);
+            this.Controls.Add(viewTasksButton);
         }
 
         private void PlayVoiceGreeting()
@@ -189,6 +227,7 @@ namespace CybersecurityAwarenessBot
         {
             currentUser = new UserContext();
             random = new Random();
+            taskManager = new TaskManager();
 
             responseDatabase = new Dictionary<string, ChatResponse>(StringComparer.OrdinalIgnoreCase)
             {
@@ -304,9 +343,33 @@ namespace CybersecurityAwarenessBot
                     },
                     Topic = "support"
                 }},
+                { "task", new ChatResponse {
+                    Responses = new List<string> {
+                        "I can help you manage cybersecurity tasks! You can add tasks like 'Set up two-factor authentication' or 'Review account privacy settings'. Would you like to add a new task?",
+                        "Task management is important for staying organized with your cybersecurity goals. I can help you create, view, and manage your security tasks.",
+                        "Let's help you stay on top of your cybersecurity! You can create tasks with reminders to ensure you don't forget important security measures."
+                    },
+                    Topic = "task"
+                }},
+                { "tasks", new ChatResponse {
+                    Responses = new List<string> {
+                        "Here are your current cybersecurity tasks. You can add new ones or manage existing tasks to stay secure!",
+                        "Managing your security tasks helps you stay organized and protected. Let me show you your current tasks.",
+                        "Great! Let's look at your cybersecurity task list to see what needs attention."
+                    },
+                    Topic = "task"
+                }},
+                { "remind", new ChatResponse {
+                    Responses = new List<string> {
+                        "I can set up reminders for your cybersecurity tasks! What would you like to be reminded about?",
+                        "Reminders are great for maintaining good security habits. What cybersecurity task would you like me to remind you about?",
+                        "Let's set up a reminder for an important security task. What do you need to remember to do?"
+                    },
+                    Topic = "task"
+                }},
                 { "help", new ChatResponse {
                     Responses = new List<string> {
-                        "🔐 I can help you with:\n• Password safety and best practices\n• Phishing scams and how to avoid them\n• Online scams and fraud detection\n• Privacy protection techniques\n• Safe browsing techniques\n• Social engineering tactics\n• Malware protection\n\n💬 I understand when you're worried, confused, or frustrated and will adjust my responses accordingly.\n📝 Just type your question, and I'll provide personalized help to keep you safe online!",
+                        "🔐 I can help you with:\n• Password safety and best practices\n• Phishing scams and how to avoid them\n• Online scams and fraud detection\n• Privacy protection techniques\n• Safe browsing techniques\n• Social engineering tactics\n• Malware protection\n• Task management for cybersecurity goals\n\n💬 I understand when you're worried, confused, or frustrated and will adjust my responses accordingly.\n📝 Just type your question, and I'll provide personalized help to keep you safe online!",
                         "Ask me about cybersecurity topics like 'passwords', 'phishing', 'scams', or 'privacy'. I'm here to help keep you safe online!",
                         "Type 'passwords' for password safety, 'phishing' for email security, 'scams' for fraud protection, or 'privacy' for online privacy tips."
                     },
@@ -351,6 +414,8 @@ namespace CybersecurityAwarenessBot
             chatDisplay.Visible = true;
             userInput.Visible = true;
             sendButton.Visible = true;
+            taskButton.Visible = true;
+            viewTasksButton.Visible = true;
 
             // Add personalized greeting with typewriter effect
             string greeting = $"Hello, {currentUser.Name}! It's great to meet you. I'm here to help you learn about cybersecurity with personalized guidance.\n\n" +
@@ -358,6 +423,8 @@ namespace CybersecurityAwarenessBot
                             "• Ask me about cybersecurity topics like 'passwords', 'phishing', 'scams', or 'privacy'\n" +
                             "• I remember our conversation and can provide personalized responses\n" +
                             "• Tell me if you're worried, confused, or frustrated - I'm here to help!\n" +
+                            "• Use the 'Add Task' button to create cybersecurity reminders\n" +
+                            "• Use the 'View Tasks' button to see your task list\n" +
                             "• Type 'exit' or 'quit' to end our conversation\n" +
                             "• Type 'help' if you need assistance\n\n" +
                             "What would you like to learn about today?";
@@ -379,6 +446,22 @@ namespace CybersecurityAwarenessBot
         {
             if (!isTyping)
                 SendMessage();
+        }
+
+        private void TaskButton_Click(object sender, EventArgs e)
+        {
+            if (!isTyping)
+            {
+                StartTaskCreation();
+            }
+        }
+
+        private void ViewTasksButton_Click(object sender, EventArgs e)
+        {
+            if (!isTyping)
+            {
+                ShowTaskList();
+            }
         }
 
         private void SendMessage()
@@ -440,6 +523,8 @@ namespace CybersecurityAwarenessBot
                 // Disable input while typing
                 userInput.Enabled = false;
                 sendButton.Enabled = false;
+                taskButton.Enabled = false;
+                viewTasksButton.Enabled = false;
 
                 typingTimer.Start();
             }
@@ -479,6 +564,8 @@ namespace CybersecurityAwarenessBot
                     // Re-enable input
                     userInput.Enabled = true;
                     sendButton.Enabled = true;
+                    taskButton.Enabled = true;
+                    viewTasksButton.Enabled = true;
                     userInput.Focus();
                 }
             }
@@ -486,6 +573,71 @@ namespace CybersecurityAwarenessBot
             {
                 typingTimer.Stop();
             }
+        }
+
+        private void StartTaskCreation()
+        {
+            inTaskMode = true;
+            taskTitle = "";
+            taskDescription = "";
+
+            string message = "Let's create a new cybersecurity task! 📝\n\n" +
+                            "Please provide a title for your task (e.g., 'Set up two-factor authentication', 'Review privacy settings'):";
+
+            AddMessageWithTyping("🤖 Bot", message, Color.FromArgb(100, 200, 255));
+        }
+
+        private void ShowTaskList()
+        {
+            var allTasks = taskManager.GetAllTasks();
+            var pendingTasks = taskManager.GetPendingTasks();
+            var completedTasks = taskManager.GetCompletedTasks();
+            var overdueTasks = taskManager.GetOverdueTasks();
+
+            string message = "📋 **YOUR CYBERSECURITY TASKS**\n\n";
+
+            if (allTasks.Count == 0)
+            {
+                message += "You don't have any tasks yet. Click 'Add Task' to create your first cybersecurity task!";
+            }
+            else
+            {
+                message += $"📊 **Summary:** {allTasks.Count} total tasks, {pendingTasks.Count} pending, {completedTasks.Count} completed\n\n";
+
+                if (overdueTasks.Any())
+                {
+                    message += "🚨 **OVERDUE TASKS:**\n";
+                    foreach (var task in overdueTasks)
+                    {
+                        message += $"❗ #{task.Id}: {task.Title}\n   Due: {task.ReminderDateTime:dd/MM/yyyy HH:mm}\n   {task.Description}\n\n";
+                    }
+                }
+
+                if (pendingTasks.Any())
+                {
+                    message += "⏰ **PENDING TASKS:**\n";
+                    foreach (var task in pendingTasks.Where(t => !overdueTasks.Contains(t)))
+                    {
+                        message += $"📌 #{task.Id}: {task.Title}\n   Due: {task.ReminderDateTime:dd/MM/yyyy HH:mm}\n   {task.Description}\n\n";
+                    }
+                }
+
+                if (completedTasks.Any())
+                {
+                    message += "✅ **COMPLETED TASKS:**\n";
+                    foreach (var task in completedTasks.Take(5)) // Show last 5 completed
+                    {
+                        message += $"✅ #{task.Id}: {task.Title}\n   Completed: {task.ReminderDateTime:dd/MM/yyyy}\n\n";
+                    }
+                }
+
+                message += "\n💡 **Task Commands:**\n" +
+                          "• Type 'complete [task #]' to mark a task as done\n" +
+                          "• Type 'delete [task #]' to remove a task\n" +
+                          "• Click 'Add Task' to create a new task";
+            }
+
+            AddMessageWithTyping("🤖 Bot", message, Color.FromArgb(100, 200, 255));
         }
 
         private string ProcessUserInput(string input)
@@ -496,6 +648,23 @@ namespace CybersecurityAwarenessBot
             {
                 ExitChatbot();
                 return "Goodbye! Stay safe online!";
+            }
+
+            // TASK MANAGEMENT LOGIC
+            if (inTaskMode)
+            {
+                return HandleTaskCreation(input);
+            }
+
+            // Handle task commands
+            if (input.ToLower().StartsWith("complete "))
+            {
+                return HandleCompleteTask(input);
+            }
+
+            if (input.ToLower().StartsWith("delete "))
+            {
+                return HandleDeleteTask(input);
             }
 
             // Check if we're waiting for a yes/no response
@@ -553,6 +722,170 @@ namespace CybersecurityAwarenessBot
             }
 
             return response;
+        }
+
+        private string HandleTaskCreation(string input)
+        {
+            if (string.IsNullOrEmpty(taskTitle))
+            {
+                // Getting title
+                taskTitle = input.Trim();
+                return "Great! Now please provide a description for this task (e.g., 'Enable 2FA on all important accounts'):";
+            }
+            else if (string.IsNullOrEmpty(taskDescription))
+            {
+                // Getting description
+                taskDescription = input.Trim();
+                return "Perfect! When would you like to be reminded about this task? Please enter the date and time (e.g., 'tomorrow 2pm' or '25/12/2024 14:30'):";
+            }
+            else
+            {
+                // Getting reminder date
+                DateTime reminderDate;
+                if (TryParseDateTime(input, out reminderDate))
+                {
+                    // Determine category based on title/description
+                    string category = DetermineTaskCategory(taskTitle + " " + taskDescription);
+
+                    var task = taskManager.AddTask(taskTitle, taskDescription, reminderDate, category);
+
+                    inTaskMode = false;
+                    taskTitle = "";
+                    taskDescription = "";
+
+                    return $"✅ Task created successfully!\n\n" +
+                           $"📌 **{task.Title}**\n" +
+                           $"📝 Description: {task.Description}\n" +
+                           $"⏰ Reminder: {task.ReminderDateTime:dd/MM/yyyy HH:mm}\n" +
+                           $"🏷️ Category: {task.Category}\n" +
+                           $"🆔 Task ID: #{task.Id}\n\n" +
+                           $"I'll help you stay on track with your cybersecurity goals! Type 'tasks' to view all your tasks.";
+                }
+                else
+                {
+                    return "I couldn't understand that date format. Please try again with formats like:\n" +
+                           "• 'tomorrow 2pm'\n" +
+                           "• '25/12/2024 14:30'\n" +
+                           "• 'next week'\n" +
+                           "• 'in 3 days'";
+                }
+            }
+        }
+
+        private string HandleCompleteTask(string input)
+        {
+            string taskIdStr = input.Substring(9).Trim(); // Remove "complete "
+            if (int.TryParse(taskIdStr, out int taskId))
+            {
+                if (taskManager.MarkTaskComplete(taskId))
+                {
+                    var task = taskManager.GetTask(taskId);
+                    return $"🎉 Great job! Task completed: **{task?.Title}**\n\n" +
+                           $"You're making excellent progress on your cybersecurity journey! " +
+                           $"Staying organized with security tasks helps protect you online.";
+                }
+                else
+                {
+                    return $"❌ I couldn't find task #{taskId}. Type 'tasks' to see your current task list.";
+                }
+            }
+            else
+            {
+                return "Please specify a task ID number. For example: 'complete 1' to mark task #1 as completed.";
+            }
+        }
+
+        private string HandleDeleteTask(string input)
+        {
+            string taskIdStr = input.Substring(7).Trim(); // Remove "delete "
+            if (int.TryParse(taskIdStr, out int taskId))
+            {
+                var task = taskManager.GetTask(taskId);
+                if (task != null && taskManager.DeleteTask(taskId))
+                {
+                    return $"🗑️ Task deleted: **{task.Title}**\n\n" +
+                           $"The task has been removed from your list. You can always create new tasks to stay organized!";
+                }
+                else
+                {
+                    return $"❌ I couldn't find task #{taskId}. Type 'tasks' to see your current task list.";
+                }
+            }
+            else
+            {
+                return "Please specify a task ID number. For example: 'delete 1' to remove task #1.";
+            }
+        }
+
+        private string DetermineTaskCategory(string text)
+        {
+            text = text.ToLower();
+
+            if (text.Contains("password") || text.Contains("2fa") || text.Contains("two-factor") || text.Contains("authentication"))
+                return "Password & Authentication";
+            else if (text.Contains("privacy") || text.Contains("setting") || text.Contains("profile"))
+                return "Privacy";
+            else if (text.Contains("update") || text.Contains("software") || text.Contains("antivirus"))
+                return "Software & Updates";
+            else if (text.Contains("backup") || text.Contains("data"))
+                return "Data Protection";
+            else if (text.Contains("email") || text.Contains("phishing"))
+                return "Email Security";
+            else
+                return "General Security";
+        }
+
+        private bool TryParseDateTime(string input, out DateTime dateTime)
+        {
+            dateTime = DateTime.Now;
+            input = input.ToLower().Trim();
+
+            try
+            {
+                // Handle relative dates
+                if (input.Contains("tomorrow"))
+                {
+                    dateTime = DateTime.Today.AddDays(1);
+                    if (input.Contains("pm") || input.Contains("afternoon"))
+                        dateTime = dateTime.AddHours(14);
+                    else if (input.Contains("morning"))
+                        dateTime = dateTime.AddHours(9);
+                    else
+                        dateTime = dateTime.AddHours(12);
+                    return true;
+                }
+
+                if (input.Contains("next week"))
+                {
+                    dateTime = DateTime.Today.AddDays(7).AddHours(12);
+                    return true;
+                }
+
+                if (input.Contains("in ") && input.Contains("day"))
+                {
+                    var parts = input.Split(' ');
+                    for (int i = 0; i < parts.Length - 1; i++)
+                    {
+                        if (parts[i] == "in" && int.TryParse(parts[i + 1], out int days))
+                        {
+                            dateTime = DateTime.Today.AddDays(days).AddHours(12);
+                            return true;
+                        }
+                    }
+                }
+
+                // Try to parse exact date/time
+                if (DateTime.TryParse(input, out dateTime))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private string HandleWorryWithTopic(string input)
@@ -912,6 +1245,15 @@ namespace CybersecurityAwarenessBot
                 {
                     farewell += $"   • {topic.Key}: {topic.Value} time(s)\n";
                 }
+            }
+
+            // Display task summary
+            var pendingTasks = taskManager.GetPendingTaskCount();
+            var totalTasks = taskManager.GetTaskCount();
+            if (totalTasks > 0)
+            {
+                farewell += $"\n📋 Task Summary: {pendingTasks} pending tasks out of {totalTasks} total tasks\n";
+                farewell += "Don't forget to complete your cybersecurity tasks!";
             }
 
             MessageBox.Show(farewell, "Goodbye & Summary", MessageBoxButtons.OK, MessageBoxIcon.Information);
