@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "PROG6221_Part1_ST10445389/1.0.0": {
+        "runtime": {
+          "PROG6221_Part1_ST10445389.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PROG6221_Part1_ST10445389/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

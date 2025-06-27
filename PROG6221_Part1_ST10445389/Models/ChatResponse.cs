@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace CybersecurityAwarenessBot.Models
 {
-    // Response class for better organization
     public class ChatResponse
     {
         public List<string> Responses { get; set; }

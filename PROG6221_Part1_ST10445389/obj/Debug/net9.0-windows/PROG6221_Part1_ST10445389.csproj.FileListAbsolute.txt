@@ -1,0 +1,15 @@
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.AssemblyInfoInputs.cache
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.AssemblyInfo.cs
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.csproj.CoreCompileInputs.cache
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.sourcelink.json
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\bin\Debug\net9.0-windows\PROG6221_Part1_ST10445389.exe
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\bin\Debug\net9.0-windows\PROG6221_Part1_ST10445389.deps.json
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\bin\Debug\net9.0-windows\PROG6221_Part1_ST10445389.runtimeconfig.json
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\bin\Debug\net9.0-windows\PROG6221_Part1_ST10445389.dll
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\bin\Debug\net9.0-windows\PROG6221_Part1_ST10445389.pdb
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.dll
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\refint\PROG6221_Part1_ST10445389.dll
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.pdb
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\PROG6221_Part1_ST10445389.genruntimeconfig.cache
+C:\Users\fl120189\Documents\GitHub\PROG6221_POE_ST10445389\PROG6221_Part1_ST10445389\obj\Debug\net9.0-windows\ref\PROG6221_Part1_ST10445389.dll

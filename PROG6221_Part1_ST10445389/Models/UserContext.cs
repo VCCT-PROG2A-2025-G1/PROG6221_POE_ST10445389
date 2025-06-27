@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 namespace CybersecurityAwarenessBot.Models
 {
-    // User context class for memory and recall
     public class UserContext
     {
         public string Name { get; set; } = "";

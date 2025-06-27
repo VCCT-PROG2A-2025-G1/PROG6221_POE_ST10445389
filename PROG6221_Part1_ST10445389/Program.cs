@@ -2,24 +2,19 @@
 // ST10445389
 // GROUP 1
 
-// REFERENCES: 
-// claude.ai
-
 using System;
-using CybersecurityAwarenessBot.Models;
-using CybersecurityAwarenessBot.Services;
+using System.Windows.Forms;
 
 namespace CybersecurityAwarenessBot
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
-            // Initialize console settings
-            Console.Title = "Enhanced Cybersecurity Awareness Bot for South African Citizens";
-
-            var chatService = new ChatService();
-            chatService.StartChat();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new ChatForm());
         }
     }
 }
