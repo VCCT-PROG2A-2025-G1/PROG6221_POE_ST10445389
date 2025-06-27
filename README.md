@@ -7,26 +7,50 @@ Part two of the PROG POE by Kallan Jones - ST10445389
 This console application serves as a "Cybersecurity Awareness Assistant" 
 for South African citizens. It simulates real-life scenarios where users might encounter cyber threats and provides guidance on avoiding common traps.
 
-## Features
-- Voice greeting on startup
-- Interactive text-based interface
-- Responses to questions about password safety, phishing, and safe browsing
-- Input validation and error handling
-- Enhanced console UI with visual elements
+#✨ Features
 
-## Requirements
-- .NET 8.0 or later
-- Windows operating system (for voice playback functionality)
+🗂️ Smart Task Management - Create cybersecurity reminders with natural language
+🎯 Interactive Quiz System - 15 questions with immediate feedback and scoring
+🧠 Natural Language Processing - Intelligent conversation and automatic task extraction
+📊 Activity Logging - Track user progress and learning analytics
+🎨 Enhanced UI - Smooth animations, typing effects, and modern design
 
-## How to Run
-1. Clone this repository
-2. Ensure the greeting.wav file is in the output directory
-3. Open the solution in Visual Studio
-4. Build and run the application
-5. If and only if line 127 or "using (SoundPlayer player = new SoundPlayer("greeting.wav"))" is throwing an error, 
-download "System.Windows.Extensions" from the NuGet Packet Manager.
+🚀 Quick Start
+Open in Visual Studio
+Open CybersecurityAwarenessBot.sln
+Build and run (F5)
 
-## Usage
-- Type questions about cybersecurity topics
-- Use "help" to see available commands and questions you can ask
-- Type "exit" or "quit" to end the conversation
+Start learning!
+Enter your name and begin chatting about cybersecurity
+
+
+💬 Usage Examples
+User: "Add a task for two-factor authentication tomorrow"
+Bot: ✅ Task created: 'Two-factor authentication' scheduled for tomorrow
+
+User: "Start quiz"
+Bot: 🎯 Beginning cybersecurity quiz with 10 questions...
+
+User: "I'm worried about phishing emails"
+Bot: 🛡️ It's natural to worry about phishing - let me help you stay safe...
+🏗️ Architecture
+├── Models/          # Data models (CyberTask, QuizQuestion, etc.)
+├── Services/        # Business logic (TaskManager, QuizManager, NLP)
+├── ChatForm.cs      # Main UI and user interactions
+└── Program.cs       # Application entry point
+🎯 Core Components
+
+TaskManager: CRUD operations for cybersecurity tasks
+QuizManager: 15-question quiz system with scoring
+NLPProcessor: Intent recognition and automatic task extraction
+ActivityLogger: Comprehensive user interaction tracking
+
+📋 Requirements
+
+Windows 10+
+.NET Framework 4.7.2+
+Visual Studio 2019+ (for development)
+
+👨‍💻 Author
+Kallan Jones (ST10445389)
+Group 1 - Cybersecurity Education Project
