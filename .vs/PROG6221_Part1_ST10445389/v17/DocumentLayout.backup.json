@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\services\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\services\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\services\\quizmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\services\\quizmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -47,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\models\\quizquestion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\services\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\services\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\models\\cybertask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\models\\cybertask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -72,7 +72,7 @@
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\ChatForm.cs",
               "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\ChatForm.cs",
               "RelativeToolTip": "PROG6221_Part1_ST10445389\\ChatForm.cs",
-              "ViewState": "AgIAAHsCAAAAAAAAAAAWwJkCAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAAAAgBAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-27T16:16:20.232Z",
               "IsPinned": true,
@@ -84,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ActivityLogger.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\ActivityLogger.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\ActivityLogger.cs",
@@ -97,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ActivityLogEntry.cs.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\ActivityLogEntry.cs.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\ActivityLogEntry.cs.cs",
@@ -110,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "NLPProcessor.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs",
@@ -123,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "QuizManager.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\QuizManager.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\QuizManager.cs",
@@ -136,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "QuizQuestion.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\QuizQuestion.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\QuizQuestion.cs",
@@ -149,13 +149,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "TaskManager.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
               "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
               "RelativeToolTip": "PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAIwD4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-27T16:31:53.682Z",
               "EditorCaption": ""
@@ -175,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ChatService.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\ChatService.cs",
@@ -188,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ChatResponse.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\ChatResponse.cs",
@@ -201,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "UserContext.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\UserContext.cs",
@@ -214,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "PROG6221_Part1_ST10445389.csproj",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj",
@@ -227,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Program.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Program.cs",

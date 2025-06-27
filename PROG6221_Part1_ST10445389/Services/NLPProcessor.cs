@@ -195,22 +195,22 @@ namespace CybersecurityAwarenessBot.Services
         {
             // Common patterns for task extraction
             var patterns = new List<(Regex regex, string titleGroup, string descGroup)>
-            {
-                // "Remind me to [action]"
-                (new Regex(@"remind me to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
-                
-                // "Add a task to [action]"
-                (new Regex(@"add a task to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
-                
-                // "Create a reminder to [action]"
-                (new Regex(@"create a reminder to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
-                
-                // "Set a reminder to [action]"
-                (new Regex(@"set a reminder to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
-                
-                // "I need to [action]"
-                (new Regex(@"i need to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", "")
-            };
+    {
+        // "Add a task for [action]" or "Add a task to [action]"
+        (new Regex(@"add a task (?:for|to) (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
+        
+        // "Remind me to [action]"
+        (new Regex(@"remind me to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
+        
+        // "Create a reminder to [action]"
+        (new Regex(@"create a reminder to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
+        
+        // "Set a reminder to [action]"
+        (new Regex(@"set a reminder to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
+        
+        // "I need to [action]"
+        (new Regex(@"i need to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", "")
+    };
 
             foreach (var (regex, titleGroup, descGroup) in patterns)
             {
@@ -226,9 +226,27 @@ namespace CybersecurityAwarenessBot.Services
                 }
             }
 
-            // Fallback
-            taskInfo.Title = "Cybersecurity Task";
-            taskInfo.Description = "Complete cybersecurity-related activity";
+            // If no pattern matches, try to extract from simple phrases
+            string cleanInput = input.ToLower()
+                .Replace("add a task for", "")
+                .Replace("add a task to", "")
+                .Replace("remind me to", "")
+                .Replace("create a reminder to", "")
+                .Replace("set a reminder to", "")
+                .Replace("i need to", "")
+                .Trim();
+
+            if (!string.IsNullOrEmpty(cleanInput))
+            {
+                taskInfo.Title = CapitalizeFirst(cleanInput);
+                taskInfo.Description = GenerateDescription(cleanInput);
+            }
+            else
+            {
+                // Fallback
+                taskInfo.Title = "Cybersecurity Task";
+                taskInfo.Description = "Complete cybersecurity-related activity";
+            }
         }
 
         private string GenerateDescription(string action)

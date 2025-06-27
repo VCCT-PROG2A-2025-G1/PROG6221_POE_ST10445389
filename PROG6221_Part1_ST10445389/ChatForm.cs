@@ -220,7 +220,7 @@ namespace CybersecurityAwarenessBot
 
             // Typing timer for typewriter effect
             typingTimer = new Timer();
-            typingTimer.Interval = 30; // Speed of typing effect
+            typingTimer.Interval = 2; // Speed of typing effect
             typingTimer.Tick += TypingTimer_Tick;
 
             this.Controls.Add(asciiLabel);
@@ -637,15 +637,14 @@ namespace CybersecurityAwarenessBot
             currentQuizQuestion = quizManager.GetCurrentQuestion();
 
             string welcomeMessage = "🎯 **CYBERSECURITY QUIZ CHALLENGE** 🎯\n\n" +
-                                   "Test your knowledge with 10 questions about online safety!\n" +
-                                   "You'll get immediate feedback after each answer.\n\n" +
-                                   "Ready? Let's start with question 1!\n\n" +
-                                   "────────────────────────────────────\n\n";
+                                   "Test your knowledge with 10 questions about online safety!\n\n" +
+                                   "You'll get immediate feedback after each answer.\n" +
+                                   "Ready? Let's start with question 1!\n\n";
 
-            AddMessageWithTyping("🎯 Quiz", welcomeMessage, Color.FromArgb(255, 215, 0)); // Gold color
+            AddMessageWithTyping("🎯 Quiz", welcomeMessage, Color.FromArgb(255, 215, 0));
 
-            // Small delay then show first question
-            System.Threading.Tasks.Task.Delay(1000).ContinueWith(t => {
+            // Show first question immediately after welcome message
+            System.Threading.Tasks.Task.Delay(5000).ContinueWith(t => {
                 if (!this.IsDisposed)
                 {
                     this.Invoke(new Action(() => {
@@ -659,20 +658,37 @@ namespace CybersecurityAwarenessBot
         {
             if (currentQuizQuestion == null) return;
 
-            string questionText = $"**Question {quizManager.GetCurrentQuestionNumber()}/{quizManager.GetTotalQuestions()}:**\n\n" +
-                                 $"📝 {currentQuizQuestion.Question}\n\n";
+            // Create properly formatted question display
+            string questionHeader = $"Question {quizManager.GetCurrentQuestionNumber()}/{quizManager.GetTotalQuestions()}:";
+            string questionText = $"{currentQuizQuestion.Question}";
+            string options = "";  // Changed from 'optionsText' to 'options'
+            string instructions = "";  // Changed from 'instructionText' to 'instructions'
 
-            for (int i = 0; i < currentQuizQuestion.Options.Count; i++)
+            // Format options based on question type
+            if (currentQuizQuestion.IsMultipleChoice && currentQuizQuestion.Options.Count > 2)
             {
-                char optionLetter = (char)('A' + i);
-                questionText += $"{optionLetter}) {currentQuizQuestion.Options[i]}\n";
+                // Multiple choice question
+                for (int i = 0; i < currentQuizQuestion.Options.Count; i++)
+                {
+                    char optionLetter = (char)('A' + i);
+                    options += $"{optionLetter}) {currentQuizQuestion.Options[i]}\n";
+                }
+                instructions = "Type your answer (A, B, C, or D):";
+            }
+            else
+            {
+                // True/False question (2 options)
+                options = "A) True\nB) False\n";
+                instructions = "Type your answer (A for True, B for False):";
             }
 
-            questionText += $"\n💡 **Category:** {currentQuizQuestion.Category}\n";
-            questionText += "\n🔤 **Type your answer (A, B, C, or D):**";
-            questionText += "\n💔 **Type 'quit' to exit quiz early**";
+            string category = $"Category: {currentQuizQuestion.Category}";  // Changed from 'categoryText' to 'category'
+            string quitInfo = "Type 'stop' to exit quiz early";  // Changed from 'quitText' to 'quitInfo'
 
-            AddMessageWithTyping("🎯 Quiz", questionText, Color.FromArgb(255, 215, 0));
+            // Combine all parts with proper spacing
+            string fullQuestion = $"{questionHeader}\n\n{questionText}\n\n{options}\n{category}\n\n{instructions}\n{quitInfo}";
+
+            AddMessageWithTyping("Quiz", fullQuestion, Color.FromArgb(255, 215, 0));
         }
 
         private string HandleQuizAnswer(string input)
@@ -680,7 +696,9 @@ namespace CybersecurityAwarenessBot
             if (currentQuizQuestion == null) return "No active question. Type 'quiz' to start a new quiz!";
 
             // Check for early exit commands
-            if (input.ToLower().Contains("stop") ||
+            if (input.ToLower().Contains("quit") ||
+                input.ToLower().Contains("exit") ||
+                input.ToLower().Contains("stop") ||
                 input.ToLower().Contains("end quiz") ||
                 input.ToLower().Contains("finish"))
             {
@@ -700,9 +718,22 @@ namespace CybersecurityAwarenessBot
                 answerIndex = numAnswer - 1;
             }
 
-            if (answerIndex < 0 || answerIndex >= currentQuizQuestion.Options.Count)
+            // Validate answer
+            bool isTrueFalse = currentQuizQuestion.Options.Count == 2;
+
+            if (isTrueFalse)
             {
-                return "Please enter a valid answer (A, B, C, or D), or type 'stop' to exit the quiz early.";
+                if (answerIndex < 0 || answerIndex > 1)
+                {
+                    return "Please enter **A** for True or **B** for False, or type 'quit' to exit the quiz.";
+                }
+            }
+            else
+            {
+                if (answerIndex < 0 || answerIndex >= currentQuizQuestion.Options.Count)
+                {
+                    return "Please enter a valid answer (**A**, **B**, **C**, or **D**), or type 'quit' to exit the quiz.";
+                }
             }
 
             // Check answer
@@ -710,19 +741,20 @@ namespace CybersecurityAwarenessBot
             char selectedLetter = (char)('A' + answerIndex);
             char correctLetter = (char)('A' + currentQuizQuestion.CorrectAnswerIndex);
 
-            string feedback;
+            string feedback = "";
+
             if (isCorrect)
             {
-                feedback = $"✅ **CORRECT!** Great job!\n\n" +
-                          $"Your answer: {selectedLetter}) {currentQuizQuestion.Options[answerIndex]}\n\n" +
-                          $"💡 **Explanation:** {currentQuizQuestion.Explanation}";
+                feedback = $"CORRECT! Great job!\n\n" +
+          $"Your answer: {selectedLetter}) {currentQuizQuestion.Options[answerIndex]}\n\n" +
+          $"Explanation: {currentQuizQuestion.Explanation}";
             }
             else
             {
-                feedback = $"❌ **INCORRECT.** Don't worry, this helps you learn!\n\n" +
+                feedback = $"INCORRECT. Don't worry, this helps you learn!\n\n" +
                           $"Your answer: {selectedLetter}) {currentQuizQuestion.Options[answerIndex]}\n" +
                           $"Correct answer: {correctLetter}) {currentQuizQuestion.Options[currentQuizQuestion.CorrectAnswerIndex]}\n\n" +
-                          $"💡 **Explanation:** {currentQuizQuestion.Explanation}";
+                          $"Why this is wrong: {currentQuizQuestion.Explanation}";
             }
 
             // Move to next question or end quiz
@@ -730,7 +762,7 @@ namespace CybersecurityAwarenessBot
 
             if (quizManager.IsQuizComplete())
             {
-                // Quiz finished normally
+                // Quiz finished
                 var result = quizManager.GetFinalResult();
                 activityLogger.LogQuizCompleted(result.Score, result.TotalQuestions);
 
@@ -745,13 +777,12 @@ namespace CybersecurityAwarenessBot
             }
             else
             {
-                feedback += "\n\n⏭️ **Ready for the next question?**\n" +
-                           $"📊 Progress: Question {quizManager.GetCurrentQuestionNumber()}/{quizManager.GetTotalQuestions()}\n" +
-                           "💡 Type 'quit' anytime to exit the quiz early\n" +
+                feedback += $"\n\n⏭️ **Ready for the next question?**\n" +
+                           $"📊 **Progress:** {quizManager.GetCurrentQuestionNumber() - 1}/{quizManager.GetTotalQuestions()} completed\n" +
                            "────────────────────────────────────";
 
                 // Show next question after a delay
-                System.Threading.Tasks.Task.Delay(2000).ContinueWith(t => {
+                System.Threading.Tasks.Task.Delay(3000).ContinueWith(t => {
                     if (!this.IsDisposed && inQuizMode)
                     {
                         this.Invoke(new Action(() => {
