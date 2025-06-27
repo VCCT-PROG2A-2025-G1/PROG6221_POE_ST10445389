@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\services\\nlpprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\services\\nlpprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\models\\activitylogentry.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\models\\activitylogentry.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\services\\nlpprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|solutionrelative:prog6221_part1_st10445389\\services\\nlpprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC205743-6351-4150-A8F7-80573635E5D9}|PROG6221_Part1_ST10445389\\PROG6221_Part1_ST10445389.csproj|c:\\users\\fl120189\\documents\\github\\prog6221_poe_st10445389\\prog6221_part1_st10445389\\prog6221_part1_st10445389.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -62,11 +62,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ChatForm.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\ChatForm.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\ChatForm.cs",
@@ -84,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ActivityLogger.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\ActivityLogger.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\ActivityLogger.cs",
@@ -97,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ActivityLogEntry.cs.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Models\\ActivityLogEntry.cs.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Models\\ActivityLogEntry.cs.cs",
@@ -110,20 +110,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "NLPProcessor.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs",
-              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs",
-              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs",
-              "ViewState": "AgIAABwCAAAAAAAAAAAmwDACAAAeAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs*",
+              "RelativeToolTip": "PROG6221_Part1_ST10445389\\Services\\NLPProcessor.cs*",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAIwAsBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-27T20:01:37.44Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "QuizManager.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\QuizManager.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\QuizManager.cs",
@@ -149,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TaskManager.cs",
               "DocumentMoniker": "C:\\Users\\fl120189\\Documents\\GitHub\\PROG6221_POE_ST10445389\\PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",
               "RelativeDocumentMoniker": "PROG6221_Part1_ST10445389\\Services\\TaskManager.cs",

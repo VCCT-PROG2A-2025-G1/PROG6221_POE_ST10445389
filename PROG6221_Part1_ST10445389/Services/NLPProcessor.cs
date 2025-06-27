@@ -178,29 +178,44 @@ namespace CybersecurityAwarenessBot.Services
         private bool IsTaskCreationRequest(string input)
         {
             string[] taskPatterns = {
-                "remind me to",
-                "add a task to",
-                "create a reminder to",
-                "set a reminder to",
-                "help me remember to",
-                "i need to",
-                "don't forget to",
-                "schedule a task to"
-            };
+        "add a task for",
+        "add a task to",
+        "create a task for",
+        "create a task to",
+        "remind me to",
+        "add a reminder for",
+        "add a reminder to",
+        "create a reminder to",
+        "create a reminder for",
+        "set a reminder to",
+        "set a reminder for",
+        "help me remember to",
+        "i need to",
+        "don't forget to",
+        "schedule a task to",
+        "schedule a task for"
+    };
 
-            return taskPatterns.Any(pattern => input.Contains(pattern, StringComparison.OrdinalIgnoreCase));
+            string lowerInput = input.ToLower();
+            return taskPatterns.Any(pattern => lowerInput.Contains(pattern));
         }
 
         private void ExtractTitleAndDescription(string input, TaskInformation taskInfo)
         {
-            // Common patterns for task extraction
+            // Common patterns for task extraction - FIXED to handle "for"
             var patterns = new List<(Regex regex, string titleGroup, string descGroup)>
     {
-        // "Add a task for [action]" or "Add a task to [action]"
-        (new Regex(@"add a task (?:for|to) (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
+        // "Add a task for [action]" - FIXED PATTERN
+        (new Regex(@"add a task for (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
+        
+        // "Add a task to [action]" 
+        (new Regex(@"add a task to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
         
         // "Remind me to [action]"
         (new Regex(@"remind me to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
+        
+        // "Create a reminder for [action]"
+        (new Regex(@"create a reminder for (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
         
         // "Create a reminder to [action]"
         (new Regex(@"create a reminder to (.+?)(?:\s+(?:tomorrow|today|next week|in \d+|on \w+|at \d+).*)?$", RegexOptions.IgnoreCase), "$1", ""),
@@ -226,26 +241,28 @@ namespace CybersecurityAwarenessBot.Services
                 }
             }
 
-            // If no pattern matches, try to extract from simple phrases
+            // Fallback - simple text replacement
             string cleanInput = input.ToLower()
                 .Replace("add a task for", "")
                 .Replace("add a task to", "")
                 .Replace("remind me to", "")
                 .Replace("create a reminder to", "")
+                .Replace("create a reminder for", "")
                 .Replace("set a reminder to", "")
+                .Replace("set a reminder for", "")
                 .Replace("i need to", "")
                 .Trim();
 
-            if (!string.IsNullOrEmpty(cleanInput))
+            if (!string.IsNullOrEmpty(cleanInput) && cleanInput.Length > 2)
             {
                 taskInfo.Title = CapitalizeFirst(cleanInput);
                 taskInfo.Description = GenerateDescription(cleanInput);
             }
             else
             {
-                // Fallback
-                taskInfo.Title = "Cybersecurity Task";
-                taskInfo.Description = "Complete cybersecurity-related activity";
+                // Final fallback
+                taskInfo.Title = "Enable two-factor authentication";
+                taskInfo.Description = "Set up 2FA for enhanced security";
             }
         }
 
