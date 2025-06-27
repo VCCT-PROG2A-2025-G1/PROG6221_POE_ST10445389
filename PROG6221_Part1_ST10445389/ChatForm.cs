@@ -29,6 +29,11 @@ namespace CybersecurityAwarenessBot
         private string taskTitle = "";
         private string taskDescription = "";
 
+        // Quiz Game
+        private QuizManager quizManager;
+        private bool inQuizMode = false;
+        private QuizQuestion currentQuizQuestion;
+
         private RichTextBox chatDisplay;
         private TextBox userInput;
         private Button sendButton;
@@ -43,6 +48,9 @@ namespace CybersecurityAwarenessBot
         private bool isTyping = false;
         private Button taskButton;
         private Button viewTasksButton;
+        private Button quizButton;
+
+        private NLPProcessor nlpProcessor;
 
         public ChatForm()
         {
@@ -194,6 +202,20 @@ namespace CybersecurityAwarenessBot
             };
             viewTasksButton.Click += ViewTasksButton_Click;
 
+            // Quiz Button
+            quizButton = new Button
+            {
+                Text = "Start Quiz 🎯",
+                Location = new Point(280, 660),
+                Size = new Size(120, 35),
+                BackColor = Color.FromArgb(0, 150, 0), // Dark Green
+                ForeColor = Color.White,
+                Font = new Font("Arial", 10, FontStyle.Bold),
+                FlatStyle = FlatStyle.Flat,
+                Visible = false
+            };
+            quizButton.Click += QuizButton_Click;
+
             // Typing timer for typewriter effect
             typingTimer = new Timer();
             typingTimer.Interval = 30; // Speed of typing effect
@@ -206,6 +228,7 @@ namespace CybersecurityAwarenessBot
             this.Controls.Add(sendButton);
             this.Controls.Add(taskButton);
             this.Controls.Add(viewTasksButton);
+            this.Controls.Add(quizButton);
         }
 
         private void PlayVoiceGreeting()
@@ -228,6 +251,8 @@ namespace CybersecurityAwarenessBot
             currentUser = new UserContext();
             random = new Random();
             taskManager = new TaskManager();
+            quizManager = new QuizManager();
+            nlpProcessor = new NLPProcessor();
 
             responseDatabase = new Dictionary<string, ChatResponse>(StringComparer.OrdinalIgnoreCase)
             {
@@ -367,9 +392,17 @@ namespace CybersecurityAwarenessBot
                     },
                     Topic = "task"
                 }},
+                { "quiz", new ChatResponse {
+                    Responses = new List<string> {
+                        "Ready to test your cybersecurity knowledge? I have a fun quiz with 10 questions that will help reinforce what you've learned!",
+                        "Let's see how much you know about staying safe online! My quiz covers passwords, phishing, scams, and more.",
+                        "Time for a cybersecurity challenge! Take my interactive quiz to test and improve your security knowledge."
+                    },
+                    Topic = "quiz"
+                }},
                 { "help", new ChatResponse {
                     Responses = new List<string> {
-                        "🔐 I can help you with:\n• Password safety and best practices\n• Phishing scams and how to avoid them\n• Online scams and fraud detection\n• Privacy protection techniques\n• Safe browsing techniques\n• Social engineering tactics\n• Malware protection\n• Task management for cybersecurity goals\n\n💬 I understand when you're worried, confused, or frustrated and will adjust my responses accordingly.\n📝 Just type your question, and I'll provide personalized help to keep you safe online!",
+                        "🔐 I can help you with:\n• Password safety and best practices\n• Phishing scams and how to avoid them\n• Online scams and fraud detection\n• Privacy protection techniques\n• Safe browsing techniques\n• Social engineering tactics\n• Malware protection\n• Task management for cybersecurity goals\n• Interactive quiz to test your knowledge\n\n💬 I understand when you're worried, confused, or frustrated and will adjust my responses accordingly.\n📝 Just type your question, and I'll provide personalized help to keep you safe online!",
                         "Ask me about cybersecurity topics like 'passwords', 'phishing', 'scams', or 'privacy'. I'm here to help keep you safe online!",
                         "Type 'passwords' for password safety, 'phishing' for email security, 'scams' for fraud protection, or 'privacy' for online privacy tips."
                     },
@@ -416,6 +449,7 @@ namespace CybersecurityAwarenessBot
             sendButton.Visible = true;
             taskButton.Visible = true;
             viewTasksButton.Visible = true;
+            quizButton.Visible = true;
 
             // Add personalized greeting with typewriter effect
             string greeting = $"Hello, {currentUser.Name}! It's great to meet you. I'm here to help you learn about cybersecurity with personalized guidance.\n\n" +
@@ -425,6 +459,7 @@ namespace CybersecurityAwarenessBot
                             "• Tell me if you're worried, confused, or frustrated - I'm here to help!\n" +
                             "• Use the 'Add Task' button to create cybersecurity reminders\n" +
                             "• Use the 'View Tasks' button to see your task list\n" +
+                            "• Use the 'Start Quiz' button to test your cybersecurity knowledge\n" +
                             "• Type 'exit' or 'quit' to end our conversation\n" +
                             "• Type 'help' if you need assistance\n\n" +
                             "What would you like to learn about today?";
@@ -464,6 +499,14 @@ namespace CybersecurityAwarenessBot
             }
         }
 
+        private void QuizButton_Click(object sender, EventArgs e)
+        {
+            if (!isTyping)
+            {
+                StartQuiz();
+            }
+        }
+
         private void SendMessage()
         {
             string message = userInput.Text.Trim();
@@ -474,7 +517,10 @@ namespace CybersecurityAwarenessBot
 
             // Process response
             string response = ProcessUserInput(message);
-            AddMessageWithTyping("🤖 Bot", response, Color.FromArgb(100, 200, 255));
+            if (!string.IsNullOrEmpty(response))
+            {
+                AddMessageWithTyping("🤖 Bot", response, Color.FromArgb(100, 200, 255));
+            }
 
             userInput.Focus();
         }
@@ -525,6 +571,7 @@ namespace CybersecurityAwarenessBot
                 sendButton.Enabled = false;
                 taskButton.Enabled = false;
                 viewTasksButton.Enabled = false;
+                quizButton.Enabled = false;
 
                 typingTimer.Start();
             }
@@ -566,6 +613,7 @@ namespace CybersecurityAwarenessBot
                     sendButton.Enabled = true;
                     taskButton.Enabled = true;
                     viewTasksButton.Enabled = true;
+                    quizButton.Enabled = true;
                     userInput.Focus();
                 }
             }
@@ -575,6 +623,129 @@ namespace CybersecurityAwarenessBot
             }
         }
 
+        // QUIZ METHODS
+        private void StartQuiz()
+        {
+            quizManager.StartNewQuiz();
+            inQuizMode = true;
+            currentQuizQuestion = quizManager.GetCurrentQuestion();
+
+            string welcomeMessage = "🎯 **CYBERSECURITY QUIZ CHALLENGE** 🎯\n\n" +
+                                   "Test your knowledge with 10 questions about online safety!\n" +
+                                   "You'll get immediate feedback after each answer.\n\n" +
+                                   "Ready? Let's start with question 1!\n\n" +
+                                   "────────────────────────────────────\n\n";
+
+            AddMessageWithTyping("🎯 Quiz", welcomeMessage, Color.FromArgb(255, 215, 0)); // Gold color
+
+            // Small delay then show first question
+            System.Threading.Tasks.Task.Delay(1000).ContinueWith(t => {
+                if (!this.IsDisposed)
+                {
+                    this.Invoke(new Action(() => {
+                        ShowCurrentQuestion();
+                    }));
+                }
+            });
+        }
+
+        private void ShowCurrentQuestion()
+        {
+            if (currentQuizQuestion == null) return;
+
+            string questionText = $"**Question {quizManager.GetCurrentQuestionNumber()}/{quizManager.GetTotalQuestions()}:**\n\n" +
+                                 $"📝 {currentQuizQuestion.Question}\n\n";
+
+            for (int i = 0; i < currentQuizQuestion.Options.Count; i++)
+            {
+                char optionLetter = (char)('A' + i);
+                questionText += $"{optionLetter}) {currentQuizQuestion.Options[i]}\n";
+            }
+
+            questionText += $"\n💡 **Category:** {currentQuizQuestion.Category}\n";
+            questionText += "\n🔤 **Type your answer (A, B, C, or D):**";
+
+            AddMessageWithTyping("🎯 Quiz", questionText, Color.FromArgb(255, 215, 0));
+        }
+
+        private string HandleQuizAnswer(string input)
+        {
+            if (currentQuizQuestion == null) return "No active question. Type 'quiz' to start a new quiz!";
+
+            // Parse answer
+            input = input.Trim().ToUpper();
+            int answerIndex = -1;
+
+            if (input.Length == 1 && input[0] >= 'A' && input[0] <= 'D')
+            {
+                answerIndex = input[0] - 'A';
+            }
+            else if (int.TryParse(input, out int numAnswer) && numAnswer >= 1 && numAnswer <= 4)
+            {
+                answerIndex = numAnswer - 1;
+            }
+
+            if (answerIndex < 0 || answerIndex >= currentQuizQuestion.Options.Count)
+            {
+                return "Please enter a valid answer (A, B, C, or D) or the number (1, 2, 3, 4).";
+            }
+
+            // Check answer
+            bool isCorrect = quizManager.SubmitAnswer(answerIndex);
+            char selectedLetter = (char)('A' + answerIndex);
+            char correctLetter = (char)('A' + currentQuizQuestion.CorrectAnswerIndex);
+
+            string feedback;
+            if (isCorrect)
+            {
+                feedback = $"✅ **CORRECT!** Great job!\n\n" +
+                          $"Your answer: {selectedLetter}) {currentQuizQuestion.Options[answerIndex]}\n\n" +
+                          $"💡 **Explanation:** {currentQuizQuestion.Explanation}";
+            }
+            else
+            {
+                feedback = $"❌ **INCORRECT.** Don't worry, this helps you learn!\n\n" +
+                          $"Your answer: {selectedLetter}) {currentQuizQuestion.Options[answerIndex]}\n" +
+                          $"Correct answer: {correctLetter}) {currentQuizQuestion.Options[currentQuizQuestion.CorrectAnswerIndex]}\n\n" +
+                          $"💡 **Explanation:** {currentQuizQuestion.Explanation}";
+            }
+
+            // Move to next question or end quiz
+            currentQuizQuestion = quizManager.GetCurrentQuestion();
+
+            if (quizManager.IsQuizComplete())
+            {
+                // Quiz finished
+                var result = quizManager.GetFinalResult();
+                feedback += $"\n\n🏁 **QUIZ COMPLETE!** 🏁\n\n" +
+                           $"📊 **Final Score:** {result.CorrectAnswers}/{result.TotalQuestions} ({result.Score}%)\n\n" +
+                           $"{result.GetScoreMessage()}\n\n" +
+                           $"🎓 Keep practicing to stay safe online!\n" +
+                           $"Click 'Start Quiz' anytime to test yourself again!";
+
+                inQuizMode = false;
+                currentQuizQuestion = null;
+            }
+            else
+            {
+                feedback += "\n\n⏭️ **Ready for the next question?**\n" +
+                           "────────────────────────────────────";
+
+                // Show next question after a delay
+                System.Threading.Tasks.Task.Delay(2000).ContinueWith(t => {
+                    if (!this.IsDisposed && inQuizMode)
+                    {
+                        this.Invoke(new Action(() => {
+                            ShowCurrentQuestion();
+                        }));
+                    }
+                });
+            }
+
+            return feedback;
+        }
+
+        // TASK MANAGEMENT METHODS
         private void StartTaskCreation()
         {
             inTaskMode = true;
@@ -650,24 +821,84 @@ namespace CybersecurityAwarenessBot
                 return "Goodbye! Stay safe online!";
             }
 
+            // ENHANCED NLP PROCESSING
+            var nlpResult = nlpProcessor.ProcessInput(input);
+
+            // QUIZ LOGIC
+            if (inQuizMode)
+            {
+                return HandleQuizAnswer(input);
+            }
+
+            // Enhanced quiz detection using NLP
+            if (nlpResult.Intent == "quiz" || input.ToLower().Contains("quiz") || input.ToLower().Contains("test") || input.ToLower().Contains("game"))
+            {
+                StartQuiz();
+                return ""; // StartQuiz handles the response
+            }
+
             // TASK MANAGEMENT LOGIC
             if (inTaskMode)
             {
                 return HandleTaskCreation(input);
             }
 
-            // Handle task commands
-            if (input.ToLower().StartsWith("complete "))
+            // AUTOMATIC TASK CREATION from NLP
+            if (nlpResult.Intent == "task" && nlpResult.Entities.ContainsKey("task_info"))
             {
-                return HandleCompleteTask(input);
+                var taskInfo = (TaskInformation)nlpResult.Entities["task_info"];
+
+                // Create the task automatically
+                var createdTask = taskManager.AddTask(taskInfo.Title, taskInfo.Description, taskInfo.ReminderDateTime, taskInfo.Category);
+
+                return $"✅ **Task Created Successfully!**\n\n" +
+                       $"📌 **Title:** {createdTask.Title}\n" +
+                       $"📝 **Description:** {createdTask.Description}\n" +
+                       $"⏰ **Reminder:** {createdTask.ReminderDateTime:dd/MM/yyyy HH:mm}\n" +
+                       $"🏷️ **Category:** {createdTask.Category}\n" +
+                       $"🆔 **Task ID:** #{createdTask.Id}\n\n" +
+                       $"Perfect! I understood your request and set everything up automatically. 🎯";
             }
 
-            if (input.ToLower().StartsWith("delete "))
+            // Fallback task creation (if NLP didn't extract complete info)
+            if (nlpResult.Intent == "task" ||
+                (input.ToLower().Contains("remind") && (input.ToLower().Contains("me") || input.ToLower().Contains("to"))) ||
+                (input.ToLower().Contains("add") && input.ToLower().Contains("task")))
             {
-                return HandleDeleteTask(input);
+                StartTaskCreation();
+                return "I'd be happy to help you create a cybersecurity task! Let me guide you through setting this up.";
             }
 
-            // Check if we're waiting for a yes/no response
+            // Enhanced task command handling using NLP
+            if (nlpResult.Intent == "complete" || input.ToLower().StartsWith("complete "))
+            {
+                return HandleCompleteTaskNLP(nlpResult, input);
+            }
+
+            if (nlpResult.Intent == "delete" || input.ToLower().StartsWith("delete "))
+            {
+                return HandleDeleteTaskNLP(nlpResult, input);
+            }
+
+            // Enhanced task viewing and summary
+            if (nlpResult.Intent == "view" ||
+                input.ToLower().Contains("what have you done") ||
+                input.ToLower().Contains("what did you do") ||
+                input.ToLower().Contains("summary") ||
+                input.ToLower().Contains("my tasks"))
+            {
+                if (input.ToLower().Contains("done") || input.ToLower().Contains("summary"))
+                {
+                    return GetPersonalizedSummary();
+                }
+                else
+                {
+                    ShowTaskList();
+                    return "Here are your current cybersecurity tasks and their status.";
+                }
+            }
+
+            // Rest of your existing logic remains the same...
             if (waitingForYesNo)
             {
                 if (input.Equals("yes", StringComparison.OrdinalIgnoreCase) ||
@@ -682,47 +913,50 @@ namespace CybersecurityAwarenessBot
                 }
                 else
                 {
-                    // Reset and process as normal question
                     waitingForYesNo = false;
                     pendingTopic = "";
                 }
             }
 
-            // Check for worried + topic combination first
             string worryResponse = HandleWorryWithTopic(input);
             if (!string.IsNullOrEmpty(worryResponse))
             {
                 return worryResponse;
             }
 
-            // Check for confusion or request for more details
             string confusionResponse = CheckForConfusion(input);
             if (!string.IsNullOrEmpty(confusionResponse))
             {
                 return confusionResponse;
             }
 
-            // Detect sentiment
-            string sentiment = DetectSentiment(input);
-
-            // Find best matching response
-            string matchedKey = FindBestMatchingKey(input, sentiment);
-
-            // Update user context
-            UpdateUserContext(matchedKey, input);
-
-            // Get personalized response
-            string response = GetPersonalizedResponse(matchedKey, sentiment);
-
-            // Offer follow-up if appropriate
-            string followUp = OfferFollowUp(matchedKey);
-            if (!string.IsNullOrEmpty(followUp))
+            string detectedTopic = DetectTopicFromNLP(nlpResult);
+            if (!string.IsNullOrEmpty(detectedTopic))
             {
-                response += "\n\n" + followUp;
+                UpdateUserContext(detectedTopic, input);
+                string response = GetPersonalizedResponse(detectedTopic, "neutral");
+                string followUp = OfferFollowUp(detectedTopic);
+                if (!string.IsNullOrEmpty(followUp))
+                {
+                    response += "\n\n" + followUp;
+                }
+                return response;
             }
 
-            return response;
+            // Fallback to original logic
+            string sentiment = DetectSentiment(input);
+            string matchedKey = FindBestMatchingKey(input, sentiment);
+            UpdateUserContext(matchedKey, input);
+            string originalResponse = GetPersonalizedResponse(matchedKey, sentiment);
+            string originalFollowUp = OfferFollowUp(matchedKey);
+            if (!string.IsNullOrEmpty(originalFollowUp))
+            {
+                originalResponse += "\n\n" + originalFollowUp;
+            }
+
+            return originalResponse;
         }
+
 
         private string HandleTaskCreation(string input)
         {
@@ -886,6 +1120,152 @@ namespace CybersecurityAwarenessBot
             {
                 return false;
             }
+        }
+
+        private string HandleNLPIntent(NLPResult nlpResult, string naturalResponse)
+        {
+            switch (nlpResult.Intent)
+            {
+                case "help":
+                    return naturalResponse + "\n\n" + GetHelpResponse();
+
+                case "view":
+                    // Don't show tasks immediately, just acknowledge
+                    return naturalResponse;
+
+                default:
+                    return naturalResponse;
+            }
+        }
+
+        private string HandleCompleteTaskNLP(NLPResult nlpResult, string input)
+        {
+            if (nlpResult.Entities.ContainsKey("numbers"))
+            {
+                var numbers = (List<int>)nlpResult.Entities["numbers"];
+                int taskId = numbers.First();
+
+                if (taskManager.MarkTaskComplete(taskId))
+                {
+                    var task = taskManager.GetTask(taskId);
+                    return $"🎉 Perfect! I understood you wanted to complete task #{taskId}: **{task?.Title}**\n\n" +
+                           $"Great job staying on top of your cybersecurity tasks!";
+                }
+                else
+                {
+                    return $"❌ I couldn't find task #{taskId}. Type 'tasks' to see your current task list.";
+                }
+            }
+            else
+            {
+                // Fall back to original method
+                return HandleCompleteTask(input);
+            }
+        }
+
+        private string HandleDeleteTaskNLP(NLPResult nlpResult, string input)
+        {
+            if (nlpResult.Entities.ContainsKey("numbers"))
+            {
+                var numbers = (List<int>)nlpResult.Entities["numbers"];
+                int taskId = numbers.First();
+
+                var task = taskManager.GetTask(taskId);
+                if (task != null && taskManager.DeleteTask(taskId))
+                {
+                    return $"🗑️ I understood you wanted to delete task #{taskId}: **{task.Title}**\n\n" +
+                           $"The task has been removed from your list successfully!";
+                }
+                else
+                {
+                    return $"❌ I couldn't find task #{taskId}. Type 'tasks' to see your current task list.";
+                }
+            }
+            else
+            {
+                // Fall back to original method
+                return HandleDeleteTask(input);
+            }
+        }
+        private string GetPersonalizedSummary()
+        {
+            var allTasks = taskManager.GetAllTasks();
+            var completedTasks = taskManager.GetCompletedTasks();
+            var pendingTasks = taskManager.GetPendingTasks();
+
+            string summary = $"📋 **Here's what I've helped you with, {currentUser.Name}:**\n\n";
+
+            if (allTasks.Count == 0)
+            {
+                summary += "We haven't created any cybersecurity tasks yet, but I'm ready to help you stay organized and secure online!";
+            }
+            else
+            {
+                summary += "🎯 **Task Summary:**\n";
+                for (int i = 0; i < Math.Min(allTasks.Count, 5); i++) // Show last 5 tasks
+                {
+                    var task = allTasks[i];
+                    string status = task.IsCompleted ? "✅ Completed" : "⏰ Pending";
+                    summary += $"{i + 1}. {status}: '{task.Title}' (Due: {task.ReminderDateTime:dd/MM/yyyy})\n";
+                }
+
+                summary += $"\n📊 **Overall Progress:**\n";
+                summary += $"• Total tasks created: {allTasks.Count}\n";
+                summary += $"• Completed: {completedTasks.Count}\n";
+                summary += $"• Still pending: {pendingTasks.Count}\n";
+
+                if (completedTasks.Count > 0)
+                {
+                    summary += $"\n🎉 You're doing great with your cybersecurity goals!";
+                }
+            }
+
+            if (currentUser.TopicInteractions.Any())
+            {
+                summary += $"\n\n💬 **Topics we've discussed:**\n";
+                foreach (var topic in currentUser.TopicInteractions.Take(3))
+                {
+                    summary += $"• {topic.Key}: {topic.Value} time(s)\n";
+                }
+            }
+
+            summary += $"\n\n💡 I'm here to help you stay safe online! What would you like to work on next?";
+
+            return summary;
+        }
+
+        private string DetectTopicFromNLP(NLPResult nlpResult)
+        {
+            if (nlpResult.Entities.ContainsKey("security_topics"))
+            {
+                var topics = (List<string>)nlpResult.Entities["security_topics"];
+                return topics.First(); // Return the first detected security topic
+            }
+
+            // Check if the intent itself is a security topic
+            string[] securityIntents = { "password", "phishing", "scam", "privacy", "malware", "browsing" };
+            if (securityIntents.Contains(nlpResult.Intent))
+            {
+                return nlpResult.Intent;
+            }
+
+            return "";
+        }
+
+        private string GetHelpResponse()
+        {
+            return "🔐 I can help you with:\n" +
+                   "• Password safety and best practices\n" +
+                   "• Phishing scams and how to avoid them\n" +
+                   "• Online scams and fraud detection\n" +
+                   "• Privacy protection techniques\n" +
+                   "• Safe browsing techniques\n" +
+                   "• Social engineering tactics\n" +
+                   "• Malware protection\n" +
+                   "• Task management for cybersecurity goals\n" +
+                   "• Interactive quiz to test your knowledge\n\n" +
+                   "💬 I understand natural language, so feel free to ask in your own words!\n" +
+                   "📝 Just tell me what you'd like to know about staying safe online!";
         }
 
         private string HandleWorryWithTopic(string input)
