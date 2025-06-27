@@ -250,5 +250,14 @@ namespace CybersecurityAwarenessBot.Services
         {
             return currentQuizQuestions?.Count ?? 10;
         }
+
+        public QuizResult GetPartialResult()
+        {
+            return new QuizResult
+            {
+                TotalQuestions = Math.Max(currentQuestionIndex, 1), // Prevent division by zero
+                CorrectAnswers = correctAnswers
+            };
+        }
     }
 }
