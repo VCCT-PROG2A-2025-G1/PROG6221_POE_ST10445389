@@ -1,4 +1,4 @@
-# PROG2A_Part2-ST10445389
+# PROG2A_Part3-ST10445389
 Part two of the PROG POE by Kallan Jones - ST10445389
 
 # Cybersecurity Awareness Bot for South African Citizens
